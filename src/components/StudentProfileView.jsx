@@ -7,7 +7,8 @@ export default function StudentProfileView({
   setStudents,
   attendance,
   getStatusColor,
-  journeyStagesList
+  journeyStagesList,
+  batches = []
 }) {
   return (
     <div className="space-y-6 animate-fade-in">
@@ -50,7 +51,9 @@ export default function StudentProfileView({
 
               <div className="space-y-1 text-left">
                 <h3 className="text-xl font-extrabold text-slate-900 tracking-tight">{selectedStudent.name}</h3>
-                <p className="text-xs text-slate-500 font-medium">{selectedStudent.dept} Department | Engineering Trainee</p>
+                <p className="text-xs text-slate-500 font-medium">
+                  {selectedStudent.dept} Department | {batches.find(b => b.id === selectedStudent.batchId)?.name || 'No Batch'} | Engineering Trainee
+                </p>
                 
                 <div className="flex flex-wrap gap-4 pt-3 text-slate-400 text-xs font-medium">
                   <span className="flex items-center gap-1"><Mail className="h-4 w-4 text-slate-400" /> {selectedStudent.email}</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Check, Save } from 'lucide-react';
+import { Search, Check, Save , ChartLine } from 'lucide-react';
 import { isFutureDate, isAttendanceLocked } from '../utils/attendanceHelper';
 
 export default function AttendanceView({
@@ -320,9 +320,10 @@ export default function AttendanceView({
                 style={{ width: `${rosterTotalCount > 0 ? (rosterMarkedCount / rosterTotalCount) * 100 : 0}%` }}
               />
             </div>
+
             
             <span className="text-[11px] text-indigo-100 font-bold block mt-4 uppercase tracking-wider">
-              📈 {rosterComplianceRate}% Compliance Rate
+              <ChartLine /> {rosterComplianceRate}% Compliance Rate
             </span>
           </div>
 

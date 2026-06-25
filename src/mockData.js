@@ -1,17 +1,18 @@
 // Mock Database for the Placement Training Management System
 
 export const initialBatches = [
-  { id: 'batch-alpha', name: 'Batch Alpha (CSE/IT)', count: 24, focus: 'Advanced Coding & System Design', trainer: 'Dr. Ramesh Kumar' },
-  { id: 'batch-beta', name: 'Batch Beta (ECE/EEE)', count: 18, focus: 'Embedded Systems & Aptitude', trainer: 'Prof. Sarah D\'Souza' },
-  { id: 'batch-gamma', name: 'Batch Gamma (Mech/Civil)', count: 15, focus: 'Aptitude & Core Technical Fundamentals', trainer: 'Mr. Amit Verma' }
+  { id: 'elite-batch-1', name: 'Elite Batch 1', count: 12, focus: 'Product Engineering & Advanced DSA', trainer: 'Dr. Ramesh Kumar' },
+  { id: 'batch-2', name: 'Batch 2', count: 15, focus: 'Full-Stack Development & System Design', trainer: 'Prof. Sarah D\'Souza' },
+  { id: 'batch-3', name: 'Batch 3', count: 18, focus: 'Core Engineering Fundamentals & Aptitude', trainer: 'Mr. Amit Verma' },
+  { id: 'batch-4', name: 'Batch 4', count: 10, focus: 'Embedded Systems & Automation', trainer: 'Dr. Neha Sharma' }
 ];
 
 export const initialInsights = [
   { id: 'feed-1', type: 'warning', title: 'Low Attendance Alert', message: 'Ananya Iyer (ECE) attendance has dropped to 71% (Critical limit is 75%).', time: '10 mins ago' },
   { id: 'feed-2', type: 'success', title: 'Top Performance Milestone', message: 'Priya Sharma (CSE) scored 98% in coding assessment, moving to Elite status.', time: '1 hour ago' },
-  { id: 'feed-3', type: 'info', title: 'Upcoming Activity', message: 'Technical Assessment 3 (Core DBMS & OS) is scheduled for Batch Alpha tomorrow at 10:00 AM.', time: '2 hours ago' },
+  { id: 'feed-3', type: 'info', title: 'Upcoming Activity', message: 'Technical Assessment 3 (Core DBMS & OS) is scheduled for Elite Batch 1 tomorrow at 10:00 AM.', time: '2 hours ago' },
   { id: 'feed-4', type: 'success', title: 'Journey Advance', message: 'Sneha Rao (IT) has advanced to "Mock Interview" stage after clearing Technical rounds.', time: '4 hours ago' },
-  { id: 'feed-5', type: 'warning', title: 'Marks Pending Entry', message: 'Aptitude Assessment marks for Batch Gamma are pending review and submission.', time: '5 hours ago' }
+  { id: 'feed-5', type: 'warning', title: 'Marks Pending Entry', message: 'Aptitude Assessment marks for Batch 3 are pending review and submission.', time: '5 hours ago' }
 ];
 
 export const initialStudents = [
@@ -19,12 +20,13 @@ export const initialStudents = [
     id: 1,
     name: 'Arjun Mehta',
     dept: 'CSE',
+    batchId: 'elite-batch-1',
     performance: 'Elite',
     attendance: 96,
     image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=120&h=120',
     email: 'arjun.mehta@university.edu',
     phone: '+91 98765 43210',
-    journeyStage: 5, // Registered, Training Started, Assessment 1, Assessment 2, Mock Interview, Placement Ready
+    journeyStage: 5,
     scores: { aptitude: 92, coding: 95, technical: 90, communication: 88, mockInterview: 94 },
     growth: [78, 82, 85, 91, 92],
     recommendations: [
@@ -37,6 +39,7 @@ export const initialStudents = [
     id: 2,
     name: 'Sneha Rao',
     dept: 'IT',
+    batchId: 'batch-2',
     performance: 'Placement Ready',
     attendance: 92,
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120&h=120',
@@ -55,6 +58,7 @@ export const initialStudents = [
     id: 3,
     name: 'Vikram Malhotra',
     dept: 'CSE',
+    batchId: 'batch-3',
     performance: 'Progressing',
     attendance: 88,
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120&h=120',
@@ -73,6 +77,7 @@ export const initialStudents = [
     id: 4,
     name: 'Ananya Iyer',
     dept: 'ECE',
+    batchId: 'batch-4',
     performance: 'At Risk',
     attendance: 71,
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120&h=120',
@@ -91,6 +96,7 @@ export const initialStudents = [
     id: 5,
     name: 'Kabir Singh',
     dept: 'MECH',
+    batchId: 'batch-3',
     performance: 'Progressing',
     attendance: 84,
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120&h=120',
@@ -109,6 +115,7 @@ export const initialStudents = [
     id: 6,
     name: 'Priya Sharma',
     dept: 'CSE',
+    batchId: 'elite-batch-1',
     performance: 'Elite',
     attendance: 98,
     image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=120&h=120',
@@ -127,6 +134,7 @@ export const initialStudents = [
     id: 7,
     name: 'Rohan Das',
     dept: 'ECE',
+    batchId: 'batch-2',
     performance: 'Placement Ready',
     attendance: 90,
     image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=120&h=120',
@@ -145,6 +153,7 @@ export const initialStudents = [
     id: 8,
     name: 'Aditi Verma',
     dept: 'EEE',
+    batchId: 'batch-4',
     performance: 'At Risk',
     attendance: 74,
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=120&h=120',

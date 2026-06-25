@@ -37,13 +37,6 @@ export default function MobileNavBar({
         <span className="text-[9px] mt-0.5">Assessments</span>
       </button>
       <button 
-        onClick={() => { setCurrentView('analytics'); setGlobalSearchQuery(''); }} 
-        className={`flex flex-col items-center p-1 rounded-lg text-slate-500 ${currentView === 'analytics' ? 'text-indigo-600 font-bold' : ''}`}
-      >
-        <BarChart3 className="h-4 w-4" />
-        <span className="text-[9px] mt-0.5">Analytics</span>
-      </button>
-      <button 
         onClick={() => { setCurrentView('reports'); setGlobalSearchQuery(''); }} 
         className={`flex flex-col items-center p-1 rounded-lg text-slate-500 ${currentView === 'reports' ? 'text-indigo-600 font-bold' : ''}`}
       >

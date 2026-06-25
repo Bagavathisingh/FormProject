@@ -22,7 +22,8 @@ export default function TopNavBar({
   students,
   setSelectedStudentId,
   setShowAddStudentModal,
-  setShowMarksEntryModal
+  setShowMarksEntryModal,
+  batches = []
 }) {
   return (
     <nav className="h-16 px-6 glass-panel border-b border-slate-200/50 flex items-center justify-between sticky top-0 z-40">
@@ -56,12 +57,7 @@ export default function TopNavBar({
           >
             Assessments
           </button>
-          <button
-            onClick={() => { setCurrentView('analytics'); setGlobalSearchQuery(''); }}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition ${currentView === 'analytics' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-          >
-            Analytics
-          </button>
+
           <button
             onClick={() => { setCurrentView('reports'); setGlobalSearchQuery(''); }}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition ${currentView === 'reports' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
@@ -116,7 +112,7 @@ export default function TopNavBar({
                       <img src={s.image} className="h-6.5 w-6.5 rounded-lg object-cover" alt="" />
                       <div>
                         <div className="text-xs font-bold text-slate-800">{s.name}</div>
-                        <div className="text-[9px] text-slate-400">{s.dept} • Status: {s.performance}</div>
+                        <div className="text-[9px] text-slate-400">{s.dept} • {batches.find(b => b.id === s.batchId)?.name || 'No Batch'} • Status: {s.performance}</div>
                       </div>
                     </button>
                   ))
@@ -205,6 +201,7 @@ export default function TopNavBar({
                       <div className={`h-2 w-2 rounded-full mt-1.5 shrink-0 ${n.unread ? 'bg-indigo-600' : 'bg-transparent'}`} />
                       <div>
                         <div>{n.text}</div>
+                        {n.time && <div className="text-[9px] text-slate-400 mt-0.5">{n.time}</div>}
                       </div>
                     </div>
                   ))

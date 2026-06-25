@@ -1,5 +1,6 @@
 import React from 'react';
 import { isAttendanceLocked } from '../utils/attendanceHelper';
+import { Calendar, Sparkles } from 'lucide-react';
 
 export default function QuickAttendanceModal({
   showAttendanceToggleModal,
@@ -7,7 +8,8 @@ export default function QuickAttendanceModal({
   attendanceSelectedStudentId,
   students,
   attendance,
-  updateAttendanceStatus
+  updateAttendanceStatus,
+  batches = []
 }) {
   if (!showAttendanceToggleModal || !attendanceSelectedStudentId) return null;
 
@@ -15,15 +17,34 @@ export default function QuickAttendanceModal({
 
   return (
     <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white/95 rounded-3xl border border-slate-100 max-w-md w-full p-6 shadow-2xl animate-fade-in space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-          <h3 className="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Quick Attendance Check</h3>
-          <button onClick={() => setShowAttendanceToggleModal(false)} className="text-slate-400 hover:text-slate-600">✕</button>
+      {/* Modal Card */}
+      <div className="bg-white/80 backdrop-blur-xl border border-white/60 max-w-md w-full p-6 rounded-3xl shadow-2xl relative overflow-hidden animate-fade-in space-y-4">
+        {/* Decorative Ambient Glows */}
+        <div className="absolute -top-12 -left-12 h-32 w-32 bg-indigo-200/25 rounded-full filter blur-xl -z-10 pointer-events-none animate-pulse-slow" />
+        <div className="absolute -bottom-12 -right-12 h-32 w-32 bg-violet-200/20 rounded-full filter blur-xl -z-10 pointer-events-none animate-pulse-slow" />
+
+        {/* Top Header */}
+        <div className="flex items-center justify-between border-b border-slate-100/60 pb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50/60 border border-indigo-100/50 text-[8px] font-extrabold uppercase tracking-widest text-indigo-600 select-none">
+            ✨ Attendance Tracker
+          </div>
+          <button 
+            onClick={() => setShowAttendanceToggleModal(false)} 
+            className="h-6 w-6 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition flex items-center justify-center text-sm font-bold cursor-pointer"
+          >
+            ✕
+          </button>
         </div>
 
-        <p className="text-xs text-slate-500 text-left">Configure attendance days log for <strong>{selectedStudent?.name}</strong>:</p>
+        <div className="text-left">
+          <h3 className="text-lg font-extrabold text-slate-900 tracking-tight leading-none">Quick Attendance Log</h3>
+          <p className="text-[10px] text-slate-500 font-semibold mt-1">
+            Reviewing log history sheets for <strong>{selectedStudent?.name}</strong> ({batches.find(b => b.id === selectedStudent?.batchId)?.name || 'No Batch'}).
+          </p>
+        </div>
 
-        <div className="grid grid-cols-3 gap-2.5 max-h-64 overflow-y-auto p-2.5 border border-slate-100 rounded-2xl bg-slate-50/50">
+        {/* Grid Container */}
+        <div className="grid grid-cols-3 gap-2.5 max-h-64 overflow-y-auto p-2.5 border border-slate-200/50 rounded-2xl bg-white/40">
           {Array.from({ length: 15 }).map((_, idx) => {
             const day = idx + 10;
             const dateStr = `2026-06-${day < 10 ? '0' + day : day}`;
@@ -31,7 +52,7 @@ export default function QuickAttendanceModal({
             const locked = isAttendanceLocked(dateStr);
             
             return (
-              <div key={idx} className="bg-white p-2 rounded-xl border border-slate-100/80 shadow-sm flex flex-col justify-between">
+              <div key={idx} className="bg-white/90 p-2 rounded-xl border border-slate-100/80 shadow-sm flex flex-col justify-between">
                 <span className="text-[9px] text-slate-400 font-extrabold block mb-1">June {day} {locked && '🔒'}</span>
                 <select
                   value={status || ''}
@@ -61,9 +82,9 @@ export default function QuickAttendanceModal({
 
         <button
           onClick={() => setShowAttendanceToggleModal(false)}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs py-2.5 px-4 rounded-xl transition shadow-md shadow-indigo-600/10"
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-600 to-violet-600 hover:opacity-95 text-white text-xs font-bold shadow-md shadow-indigo-600/10 active:scale-[0.98] transition duration-150 flex items-center justify-center gap-1.5 cursor-pointer"
         >
-          Close and Save Changes
+          Confirm Log Changes <Calendar className="h-4 w-4" />
         </button>
       </div>
     </div>

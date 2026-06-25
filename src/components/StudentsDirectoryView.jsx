@@ -14,7 +14,8 @@ export default function StudentsDirectoryView({
   setAttendanceSelectedStudentId,
   setShowAttendanceToggleModal,
   setShowAddStudentModal,
-  getStatusColor
+  getStatusColor,
+  batches = []
 }) {
   const filteredStudents = students.filter(s =>
     s.name.toLowerCase().includes(studentSearchQuery.toLowerCase()) ||
@@ -32,7 +33,7 @@ export default function StudentsDirectoryView({
         <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
           
           {/* Local search input for Student Grid */}
-          <div className="relative flex-grow sm:flex-grow-0">
+          <div className="relative grow sm:grow-0">
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
             <input
               type="text"
@@ -65,10 +66,8 @@ export default function StudentsDirectoryView({
           filteredStudents.map((student) => (
             <div
               key={student.id}
-              className="rounded-2xl bg-white/70 border border-slate-200/50 p-5 flex flex-col justify-between hover:shadow-md transition duration-200 text-left"
-            >
+              className="rounded-2xl bg-white/70 border border-slate-200/50 p-5 flex flex-col justify-between hover:shadow-md transition duration-200 text-left">
               <div>
-                {/* Avatar Header */}
                 <div className="flex items-start justify-between">
                   <img
                     src={student.image}
@@ -81,14 +80,15 @@ export default function StudentsDirectoryView({
                   </span>
                 </div>
 
-                {/* Name Details */}
                 <h3
                   className="text-xs font-extrabold text-slate-800 mt-3.5 tracking-tight cursor-pointer hover:text-indigo-600 transition"
                   onClick={() => { setSelectedStudentId(student.id); setCurrentView('profile'); }}
                 >
                   {student.name}
                 </h3>
-                <span className="text-[10px] text-slate-400 font-medium block mt-0.5">{student.dept} Dept</span>
+                <span className="text-[10px] text-slate-400 font-medium block mt-0.5">
+                  {student.dept} Dept • {batches.find(b => b.id === student.batchId)?.name || 'No Batch'}
+                </span>
               </div>
 
               {/* Stats */}
@@ -137,7 +137,6 @@ export default function StudentsDirectoryView({
                 </button>
               </div>
 
-              {/* Remove Action Button */}
               <div className="flex justify-end mt-2.5 pt-1.5">
                 <button
                   onClick={() => {
